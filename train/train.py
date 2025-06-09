@@ -7,7 +7,7 @@ def main():
         print(" [ERROR] config.yaml not found ...")
         sys.stdout.write("Exiting...\n")
         return
-    print("STARTING TRAINING".center())
-    os.system("accelerate launch train/train.py --config_file train/config.yaml")
+    print("STARTING TRAINING".center(50))
+    os.system("!accelerate launch train/train.py --config_file train/config.yaml")
 if __name__ == "__main__":
     main()
