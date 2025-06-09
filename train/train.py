@@ -8,6 +8,7 @@ def main():
         sys.stdout.write("Exiting...\n")
         return
     print("STARTING TRAINING".center(50))
-    os.system("!accelerate launch train/train.py --config_file train/config.yaml")
+    os.system("accelerate launch train/train.py --config_file train/config.yaml")
+
 if __name__ == "__main__":
     main()
