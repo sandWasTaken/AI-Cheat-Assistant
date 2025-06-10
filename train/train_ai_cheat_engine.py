@@ -11,7 +11,7 @@ def load_data(path="data.json"):
 def main():
     dataset = load_data()
     tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
-    model = GPTLMHeadModel.from_pretrained("gpt2")
+    model = GPT2LMHeadModel.from_pretrained("gpt2")
 
     tokenizer.pad_token = tokenizer.eos_token
     model.resize_token_embeddings(len(tokenizer))
