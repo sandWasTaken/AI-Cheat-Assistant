@@ -37,7 +37,7 @@ def main():
     trainer = Trainer(
         model=model,
         args=training_args,
-        traind_dataset=encodings.input_ids,
+        train_dataset=encodings.input_ids,
         data_collator=data_collator
     )
 
