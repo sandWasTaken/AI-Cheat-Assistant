@@ -30,8 +30,7 @@ def main():
     )
 
     data_collator = DataCollatorForLanguageModeling(
-        tokenizer=tokenizer,
-        mlm=False
+        tokenizer=tokenizer,mlm=False
     )
 
     trainer = Trainer(
@@ -42,6 +41,9 @@ def main():
     )
 
     trainer.train()
+
+    # Save the tokenizer to the model dir for local testing
+    tokenizer.save_pretrained("model_outputs")
 
 if __name__ == "__main__":
     main()
