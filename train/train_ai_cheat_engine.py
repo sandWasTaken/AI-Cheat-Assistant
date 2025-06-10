@@ -39,7 +39,6 @@ def main():
     )
 
     trainer.train()
-
     tokenizer.save_pretrained("model_outputs")
     model.save_pretrained("model_outputs")
 
