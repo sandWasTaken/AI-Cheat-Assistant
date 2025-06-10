@@ -12,6 +12,6 @@
 },
   {
   "prompt": "Move all *.exe files from \".\" to \"/desktop\"",
-  "response": "Use os.listdir(fildir); for f in files: if f.endswith(".exe"): move ..."
-  }
+  "response": "Use os.listdir("fildir"); for f in files: if f.endswith(".exe"): move..."
+}
 ]
