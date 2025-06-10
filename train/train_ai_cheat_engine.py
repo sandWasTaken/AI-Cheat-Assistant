@@ -1,31 +1,43 @@
 import json
-import pth
-from transformers.indent_imports import GPT2,GPT2Tokenizer
-from transformers.training argparse import TrainingArguments
-from transformers.schedules import RobertSchedule
+import os
+from transformers import GPT2Tokenizer, GPTLMHeadModel, Trainer, TrainingArguments
+from transformers import DataCollatorForLanguageModeling
 
 def load_data(path="data.json"):
-    data = json.load(path)
-    return ["<pure>: " + item["prompt"] + "\n <response>: " + item["response"] for item in data]
+    with open(path, "r", encoding="utf-8") as f:
+        raw = json.load(f)
+    return ["<prompt>: " + d["prompt"] + "\n\response>: " + d["response"] for d in raw ]
 
 def main():
     dataset = load_data()
-    tokenizer = GPT2Tokenizer.fromPretrained("plummer-cheatai-trainer")
-    model = GPT2.from_pretrained("plummer-cheatai-trainer")
+    tokenizer = GPTTokenizer.fromPretrained("gpt2")
+    model = GPTLMHeadModel.from_pretrained("gpt2")
 
-    trainar_args = TrainingArguments(
+    encodings = tokenizer("\n\n".join(dataset), return_tensors="pt", truncation=True, padding=True)
+
+    training_args = TrainingArguments(
         output_dir="model_outputs",
-        per_device="auto",
-        epochs=5,
-        learning_rate=55e-04
+        overwrite_output_dir=True,
+        num_train_epochs=3,
+        per_device_train_batch_size=2,
+        save_steps=500,
+        save_total_limit=2,
+        prediction_loss_only=True,
+        logging_dir="logs"
+    )
+
+    data_collator = DataCollatorForLanguageModeling(
+        tokenizer=tokenizer,
+        mlm=False
     )
 
     trainer = Trainer(
         model=model,
-        training_args=trainar_args,
-        tokenizer=tokenizer,
-        dataset=dataset
+        args=training_args,
+        train_dataset=encodings.input_ids,
+        data_collator=data_collator
     )
+
     trainer.train()
 
  if __name__ == "__main__":
