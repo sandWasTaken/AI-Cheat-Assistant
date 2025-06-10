@@ -1,16 +1,17 @@
 import json
 import os
-from transformers import GPT2Tokenizer, GPTLMHeadModel, Trainer, TrainingArguments
-from transformers import DataCollatorForLanguageModeling
+
+from transformers import import GPT2Tokenizer, GPT2LMHeadModel, Trainer,TrainingArguments
+from transformers.data.collators import DataCollatorForLanguageModeling
 
 def load_data(path="data.json"):
     with open(path, "r", encoding="utf-8") as f:
-        raw = json.load(f)
-    return ["<prompt>: " + d["prompt"] + "\n\response>: " + d["response"] for d in raw ]
+        raw_data = json.load(f)
+    return ["<prompt>: " + d["prompt"] + "\nresponse>: " + d["response"] for d in raw_data]
 
 def main():
     dataset = load_data()
-    tokenizer = GPTTokenizer.fromPretrained("gpt2")
+    tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
     model = GPTLMHeadModel.from_pretrained("gpt2")
 
     encodings = tokenizer("\n\n".join(dataset), return_tensors="pt", truncation=True, padding=True)
