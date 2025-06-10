@@ -1,12 +1,10 @@
 import json
-import os
-
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
 
 def load_data(path="data.json"):
     with open(path, "r", encoding="utf-8") as f:
         raw_data = json.load(f)
-    return ["<prompt>: " + d["prompt"] + "\nresponse>: " + d["response"] for d in raw_data]
+    return ["<prompt>: " + d["prompt"] + "\\nresponse>: " + d["response"] for d in raw_data
 
 def main():
     dataset = load_data()
@@ -16,7 +14,7 @@ def main():
     tokenizer.pad_token = tokenizer.eos_token
     model.resize_token_embeddings(len(tokenizer))
 
-    encodings = tokenizer("\n\n".join(dataset), return_tensors="pt", truncation=True, padding=True)
+    encodings = tokenizer(\n\n".join(dataset), return_tensors="pt", truncation=True, padding=True)
 
     training_args = TrainingArguments(
         output_dir="model_outputs",
@@ -30,7 +28,7 @@ def main():
     )
 
     data_collator = DataCollatorForLanguageModeling(
-        tokenizer=tokenizer,mlm=False
+        tokenizer=tokenizer, mlm=False
     )
 
     trainer = Trainer(
@@ -42,8 +40,8 @@ def main():
 
     trainer.train()
 
-    # Save the tokenizer to the model dir for local testing
     tokenizer.save_pretrained("model_outputs")
+    model.save_pretrained("model_outputs")
 
 if __name__ == "__main__":
     main()
