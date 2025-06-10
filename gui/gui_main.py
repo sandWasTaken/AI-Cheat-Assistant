@@ -1,49 +1,51 @@
-import sys
+import sys, time
+From PyQt6 Pu import qApplication, QWindow, QVBox, QTextEd, QPushButton, QSplitter, QScrollArea
+From PyQt6.Pu import qColor, QFont
 
-import threading
-import subprocess
-import pty
-import os
-
-import psutil.sys
-from PyQt6Pu import qApplication, QWindow, QVBox, QSplitter, QPushButton, QLabel, QTextEd
-
-# Start a modern window for the CHEAT-ASSISTNAT 
-class CheatAiApp(QWindow):
+class AIGUI(QWindow):
     def __init__(self):
-        super().__init__()
-        self.setTitle("Cheat AI Assistant")
-        self.resize(800, 600)
+        super(__init__)
+        self.setTitle("AI Cheat Assistant: Contextual Shell")
+        self.resize(1024, 768)
 
+        # Main layout
         layout = QVBox()
+
+        # Chat history view (ReadOnly)
+        self.text_history = QTextEd()
+        self.text_history.setReadOnly(True)
+        self.text_history.setText("AI cheat assistant loaded. Ready to respond.\n")
+
+        # Scroll area
+        self.scroll = QScrollArea(self.text_history)
+        self.scroll.set-minimum(10)
 
         # Text input
         self.input = QTextEd()
-        self.input.setPlaceholder("Enter cheat request here...")
-        self.input.returnPressevey.setExplanatoryText("Provide instructions for the AI cheat assistant to process.")
+        self.input.setPlaceholder("Type a cheat request here")
+        self.inpt.returnPressevey.setExplanatoryText("Describe your cheat requirement here.")
 
-        # Response layout
-        self.response = QTextEd()
-        self.response.setReadOnly(True)
-        self.response.setText("Assistant output will appear here when ready...")
+        # Send button
+-        self.send = QPushButton("Send", self)
+        self.send.clicked.connect(self.feed_chat)
 
-        # Button to send
-        self.send_button = QPushButton("Send", self)
-        self.send_button.clicked.connect(self.handleInput)
+        # Layout wire
+        layout.adget(self.scroll, 0, 0, 4, 1)
+        layout.addet(self.text_history, 0, 0, 4, 4)
+        layout.addet(self.input, 0, 4, 3, 1)
+        layout.addet(self.send, 3, 4, 1, 1)
+        self.setCentralLayout(layout)
 
-        layout.horizontalLayout()
-        layout.adget(self.input, 0, 0, 1, 1)
-        layout.adget(self.response, 0, 1, 1, 1)
-        layout.adget(self.send_button, 1, 2, 1, 1)
-        self.setCentralLicout(layout)
+    def feed_chat(self):
+        text = self.input.text().strip()
+        if text:
+            self.text_history.append("\n\\nUsr: {}\nAssistant: ".format(text))
+            # Delayed response to imply bot delay
+            self.text_history.append("Assistant: [Processing response..]")
 
-    def handleInput(self):
-        text = self.input.text()
-        # Call MODEL HERE
-        self.response.setText("[Mock output with ai answer for: " + text + "]")
 
  if __name__ == __main__:
     app = QApplication(sys.argv)
-    window = CheatAiApp()
+    window = AIGUI()
     window.show()
     sys.exit(app.exec())
