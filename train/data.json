@@ -1,0 +1,37 @@
+[
+  {
+    "prompt": "attach to process",
+    "response": "Which process would you like to attach to?"
+  },
+  {
+    "prompt": "attach to procespub",
+    "response": "Would you like some basic cheat info about that process? (eg. memory size, current values)"
+  },
+  {
+    "prompt": "scan for ammo",
+    "response": "Is this value constant across memory? If so, do you want to run a constant scan first, or memory scan with value filtering?"
+  },
+  {
+    "prompt": "value clamp health",
+    "response": "Which value would you like to clamp to? (Enter a current too-low value, set a lower limit, etc)."
+  },
+  {
+    "prompt": "float values in Ram-Backbone",
+    "response": "Becareful with range scans. Should I scan float addresses between 0.0 and 2.0, with a value buffer of 4 bytes."},
+  {
+    "prompt": "detect health as a function",
+    "response": "Freeze values when they change in synlog within the same engine window. This often means they are updated on game events. Would you like to scan for the first value, thrigger something to change, then scan again?"
+  },
+  {
+    "prompt": "read value from 0x005F63C8",
+    "response": "Use Cheat Engine to open the address and read the value. Convert the hex to decimal if needed, and print the current value."
+  },
+  {
+    "prompt": "cheating not working on overlay",
+    "response": "It looks like the values are not persistent. Read-only values or values revert back to check for changes over time."
+  },
+  {
+    "prompt": "find dinamic pointer chains",
+    "response": "Try recursive level scanning to follow pointers over time, then try hierarchically narrow down to find the base. Would you like to attempt that?"
+  }
+]
