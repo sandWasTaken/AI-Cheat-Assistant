@@ -14,6 +14,9 @@ def main():
     tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
     model = GPTLMHeadModel.from_pretrained("gpt2")
 
+    tokenizer.pad_token = tokenizer.eos_token
+    model.resize_token_embeddings(len(tokenizer))
+
     encodings = tokenizer("\n\n".join(dataset), return_tensors="pt", truncation=True, padding=True)
 
     training_args = TrainingArguments(
@@ -35,11 +38,11 @@ def main():
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataset=encodings.input_ids,
+        traind_dataset=encodings.input_ids,
         data_collator=data_collator
     )
 
     trainer.train()
 
- if __name__ == "__main__":
+if __name__ == "__main__":
     main()
