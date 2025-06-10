@@ -5,7 +5,7 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel
 prompt = input("\nEnter a cheat data tasktrip, or ask about a memory scan, value clamp etc: \n")
 
 tokenizer = GPT2Tokenizer.from_pretrained("model_outputs")
-model = GPTLMHeadModel.from_pretrained("model_outputs")
+model = GPT2LMHeadModel.from_pretrained("model_outputs")
 model.eval()
 
 tokens = tokenizer(prompt, stream=False, return_tensors=True)
