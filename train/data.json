@@ -1,18 +1,18 @@
 [
   {
-  "prompt": "Find the base patter to my health in Call of Duty",
-  "response": "Scan for the value during ingame initialization. Use new-scan = true, start with a scan for floats with initial value eg. 0;"
-},
+    "prompt": "Find the base patter to my health in Call of Duty",
+    "response": "Scan for the value during ingame initialization. Use new-scan = true, start with a scan for floats with initial value eg. 0;"
+  },
   {
-  "prompt": "Rename functions in an assembly binary dump.",
-  "response": "Apply symbol analysis. See if the sub or call syntax refers to a function with obscure name."
-},
+    "prompt": "Rename functions in an assembly binary dump.",
+    "response": "Apply symbol analysis. See if the sub or call syntax refers to a function with obscure name."
+  },
   {
-  "prompt": "Open Paint.",
-  "response": "Start with subprocess.Popen(\"calc.exe\", shell=True)."
-},
+    "prompt": "Open Paint.",
+    "response": "Start with subprocess.Popen(\"calc.exe\", shell=True)."
+  },
   {
-  "prompt": "Move all *.exe files from \".\" to \"/desktop\"",
-  "response": "Use os.listdir("fildir"); for f in files: if f.endswith(".exe"): move..."
-}
+    "prompt": "Move all *.exe files from \".\" to \"/desktop\"",
+    "response": "Use os.listdir(\"filedir\"); for f in files: if f.endswith(\".exe\"): move..."
+  }
 ]
