@@ -1,7 +1,7 @@
 import json
 import os
 
-from transformers import import GPT2Tokenizer, GPT2LMHeadModel, Trainer,TrainingArguments
+from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments
 from transformers.data.collators import DataCollatorForLanguageModeling
 
 def load_data(path="data.json"):
